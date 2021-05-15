@@ -1,0 +1,47 @@
+<!--miniprogram/pages/home_center/common_panel/index.js.wxml-->
+<wxs src="./index.wxs" module="utils" />
+
+<view class="global-background">
+  <view class="background-table">
+    <ec-canvas
+      id="mychart-dom-bar" 
+      canvas-id="mychart-bar" 
+      ec="{{ ec }}">
+    </ec-canvas>
+  </view>
+
+  <view class="background-header"> 
+    <view class="header-item" wx:for="{{roDpList}}" wx:key="{{item.name}}" wx:for-item="item" wx:for-index='idx'>
+      <text class="header-item-value" wx:if="{{item.name != 'cur_voltage'}}">{{item.value}}</text>
+      <text class="header-item-value"wx:if="{{item.name == 'cur_voltage'}}" >{{item.value / 10}}</text>
+      <text class="header-item-name" wx:if="{{item.name == 'cur_current'}}">当前电流(mA)</text>
+      <text class="header-item-name" wx:if="{{item.name == 'cur_power'}}">当前功率(W)</text>
+      <text class="header-item-name" wx:if="{{item.name == 'cur_voltage'}}">当前电压(V)</text>
+    </view>
+  </view>
+  <view class="background-mid">
+    <view wx:for="{{rwDpList}}" wx:key="{{item.code}}" wx:for-item="item" wx:if="{{item.type === 'Boolean'}}">
+      <block wx:if="{{item.type === 'Boolean'}}"> 
+        <image wx:if="{{item.value == true}}" src="/image/power_on.png" bindtap="sendDp" data-dpCode="{{item.code}}" data-value="{{item.value}}"></image>
+        <image wx:else="{{item.value}}" src="/image/power_off.png" bindtap="sendDp" data-dpCode="{{item.code}}" data-value="{{item.value}}"></image>
+      </block>
+      <block>
+        <text wx:if="{{item.value == true}}">通电</text>
+        <text wx:else="{{item.value}}">断电</text>
+      </block>
+    </view>
+  </view>
+  <view class="background-footer">
+    <view wx:if="{{show_count == true}}">
+      <image src="/image/time.png"></image>
+      <text>定时任务</text>
+    </view>
+    <view  wx:for="{{rwDpList}}" wx:key="{{item.code}}" wx:for-item="item" wx:if="{{item.type === 'Boolean'}}" wx:if="{{item.type === 'Integer'}}">
+      <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="sendDp" data-dpCode="{{item.code}}">
+        <view class="picker">
+          倒计时:{{time}}:{{sec}}
+        </view>
+      </picker>
+    </view>
+  </view>
+</view>

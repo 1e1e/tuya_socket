@@ -1,0 +1,74 @@
+/* miniprogram/pages/home_center/common_panel/index.js.wxss */
+
+.global-background {
+  background-color: #B0E0E6;
+  height: 100vh;
+}
+
+.background-header {
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid #696969;
+}
+
+.background-header .header-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-item:not(:last-child) {
+  padding-right: 20rpx;
+  border-right: 1px solid #696969;
+}
+
+.header-item-value {
+  font-size: x-large;
+  
+}
+
+.header-item-name {
+  font-size: medium;
+  
+}
+
+
+.background-mid  view{
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #696969;
+}
+
+.background-mid image {
+  height: 128px;
+  width: 128px;
+}
+
+.background-footer view{
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-footer image {
+  width: 32px;
+  height: 32px;
+}
+
+.background-footer text {
+  font-size: smaller;
+}
+
+.background-table {
+  margin-top: 63rpx;
+  height: 50vh;
+}
